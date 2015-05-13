@@ -1,0 +1,11 @@
+.cover{
+  border: 1px solid #ddd;
+  width: 200px;
+  height: 300px;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+ a{
+  color: white;
+  text-decoration: none
+ }
