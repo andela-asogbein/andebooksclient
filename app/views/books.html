@@ -2,9 +2,9 @@
   <md-content>
     <md-list>
       <md-list-item class="md-3-line" ng-repeat="book in books">
-        <a href='#/bookdetail'><img ng-src="{{book.cover}}" class="cover"></a>
+        <a href='#/{{book.bookid}}'><img ng-src="{{book.cover}}" class="cover"></a>
         <div class="md-list-item-text">
-          <a href='#/bookdetail'><h3>{{book.title}}</h3></a>
+          <a href='#/{{book.bookid}}'><h3>{{book.title}}</h3></a>
           <a href='#'><h4>{{book.author}}</h4></a>
           <p>{{book.blurb}}</p>
         </div>
