@@ -1,7 +1,14 @@
+<md-input-container class="md-icon-float md-padding">
+  <label class="md-padding">Search Books</label>
+  <md-icon md-svg-src="../img/ic_search_24px.svg" class="md-padding"></md-icon>
+  <input ng-model="queryBooks" type="text" ng-required="true">
+</md-input-container>
+<h3>OR</h3><md-button href="/#/login">Get Random Book</md-button>
+
 <div>
   <md-content>
     <md-list>
-      <md-list-item class="md-3-line" ng-repeat="book in books">
+      <md-list-item class="md-3-line" ng-repeat="book in books | filter:queryBooks">
         <a href='#/{{book.bookid}}'><img ng-src="{{book.cover}}" class="cover"></a>
         <div class="md-list-item-text">
           <a href='#/{{book.bookid}}'><h3>{{book.title}}</h3></a>
