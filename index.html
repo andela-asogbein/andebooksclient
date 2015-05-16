@@ -9,11 +9,11 @@
   <body layout="column" ng-controller='andebooksCtrl'>
     <md-toolbar layout="row">
       <h1 class="md-toolbar-tools" layout-align-gt-sm="center"><a href=''>AndeBooks</a></h1>
-        <md-button href="/#/login" ng-if='!loggedIn'>Log In</md-button>
-        <md-button href="/#/login" ng-if='loggedIn'>Hello {{user.name}}</md-button>
-        <md-button href="/#/login" ng-if='loggedIn'>Log Out</md-button>
-        <md-button href="/#/books">Books</md-button>
-        <md-button href="/#/users">Users</md-button>
+        <!-- <md-button href="/#/login" ng-if='!loggedIn'>Log In</md-button> -->
+    <!--     <div ng-if='loggedIn'>Hello {{user.username}}</div> -->
+        <md-button ng-click='doLogout()' ng-if='loggedIn' flex='15'>Log Out({{user.username}})</md-button>
+        <md-button ng-click='allBooks()'>Books</md-button>
+        <md-button ng-click='allUsers()'>Users</md-button>
     </md-toolbar>
 
     <div ng-view></div>

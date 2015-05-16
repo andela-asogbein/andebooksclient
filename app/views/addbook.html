@@ -1,0 +1,23 @@
+<div layout="column">
+  <h1>Add Book</h1>
+  <br/>
+  <md-content layout-padding class="autoScroll">
+    <md-card class="md-padding">
+      <md-input-container class="md-icon-float" >
+        <label>Title</label>
+        <input ng-model="bookData.title" type="text" ng-required="true">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float">
+        <label>Author</label>
+        <input ng-model="bookData.author" type="text" ng-required="true">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Blurb</label>
+        <textarea ng-model="bookData.blurb" type="text" ng-required="true"></textarea>
+      </md-input-container>
+      <md-button ng-click="addBook(bookData)" class="md-raised md-primary center">Add Book</md-button>
+    </md-card>
+  </md-content>
+</div>

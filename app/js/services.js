@@ -1,11 +1,14 @@
 'use strict';
 var app = angular.module('Andebooks');
 
+ //const baseUrl = 'https://andebooks.herokuapp.com/api'; //heroku
+  const baseUrl = 'http://localhost:3000/api'; //localhost
+
+//service handlingn requests to the api concerning users
 app.factory('userService', ['$http', function($http){
 
   var userFactory = {};
-  //const baseUrl = 'https://andebooks.herokuapp.com/api'; //heroku
-  const baseUrl = 'http://localhost:3000/api'; //localhost
+
 
   userFactory.allUsers = function(){
     return $http.get(baseUrl + '/users');
@@ -16,7 +19,7 @@ app.factory('userService', ['$http', function($http){
   };
 
   userFactory.addUser = function(userData){
-    return $http.post(baseUrl + 'users', userData);
+    return $http.post(baseUrl + '/users', userData);
   };
 
   userFactory.editUser = function(userid, userData){
@@ -31,12 +34,10 @@ app.factory('userService', ['$http', function($http){
 
 }]);
 
-
+//service handling requests to the api concerning books
   app.factory('bookService', ['$http', function($http){
 
   var bookFactory = {};
-  //const baseUrl = 'https://andebooks.herokuapp.com/api'; //heroku
-  const baseUrl = 'http://localhost:3000/api'; //localhost
 
   bookFactory.allBooks = function(){
     return $http.get(baseUrl + '/books');
@@ -47,15 +48,15 @@ app.factory('userService', ['$http', function($http){
   };
 
   bookFactory.addBook = function(bookData){
-    return $http.post(baseUrl + 'books', bookData);
+    return $http.post(baseUrl + '/books', bookData);
   };
 
   bookFactory.editBook = function(bookid, userData){
-    return $http.put(baseUrl + 'book/'+ bookid, userData);
+    return $http.put(baseUrl + '/book/'+ bookid, userData);
   };
 
   bookFactory.deleteBook = function(bookid){
-    return $http.delete(baseUrl + 'book/'+bookid);
+    return $http.delete(baseUrl + '/book/'+bookid);
   };
 
   bookFactory.searchBook = function(){
@@ -79,7 +80,7 @@ app.factory('userService', ['$http', function($http){
     var authFactory = {};
 
     authFactory.login = function(username, password) {
-      return $http.post('/api/authenticate', {
+      return $http.post(baseUrl + '/authenticate', {
         username: username,
         password: password
       })
@@ -104,17 +105,17 @@ app.factory('userService', ['$http', function($http){
 
     authFactory.getUser = function(){
       if(AuthToken.getToken()){
-        return $http.get('/api/me');
+        return $http.get(baseUrl + '/me');
       }
       else{
         return $q.reject({message: 'User has no token'});
-
       }
     };
 
     return authFactory;
   }]);
 
+  //service authenticating token
   app.factory('AuthToken', ['$window', function($window){
     var authTokenFactory = {};
 
@@ -132,6 +133,7 @@ app.factory('userService', ['$http', function($http){
     };
     return authTokenFactory;
   }]);
+
 
   app.factory('AuthInterceptor', ['$q', '$location', 'AuthToken', function($q, $location, AuthToken){
 
