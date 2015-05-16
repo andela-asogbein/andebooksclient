@@ -10,9 +10,9 @@ app.get('*', function(req, res){
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.listen(process.env.PORT || 8080, function(err){
+app.listen(process.env.PORT || 8000, function(err){
   if(err){
     console.log(err);
   }
-  console.log('Server Started! :-)');
+  console.log('Server Started on port 8000');
 });

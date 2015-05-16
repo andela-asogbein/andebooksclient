@@ -9,3 +9,23 @@
   color: white;
   text-decoration: none
  }
+
+/*body{
+  background: url('/img/bookpile.jpg');
+  background-size: cover;
+  background-position: center;
+}*/
+
+
+q{
+  position: absolute;
+  margin-top: 50px;
+  color: green;
+  font-size: 20px;
+}
+
+p{
+  position: absolute;
+  margin-top: 80px;
+  font-size: 15px;
+  color: green;

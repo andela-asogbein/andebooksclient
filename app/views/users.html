@@ -1,0 +1,24 @@
+<div>
+  <div layout layout-align="center center" >
+  <md-input-container class="md-icon-float md-padding" flex='25'>
+    <label class="md-padding">Search Users</label>
+    <md-icon md-svg-src="../img/ic_search_24px.svg" class="md-padding"></md-icon>
+    <input ng-model="queryUsers" type="text" ng-required="true">
+  </md-input-container>
+  </div>
+
+  <div>
+    <md-content>
+      <md-list>
+        <md-list-item class="md-3-line" ng-repeat="user in users | filter:queryUsers">
+          <div class="md-list-item-text">
+            <a href='#/{{book.bookid}}'><h3>{{user.username}}</h3></a>
+            <a href='#'><h4>{{user.email}}</h4></a>
+          </div>
+          <br/>
+          <md-divider md-inset ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>
+</div>

@@ -1,7 +1,7 @@
-<div>
+<div layout="row">
   <div layout="column">
     <md-content layout layout-align="center center" class="md-padding">
-      <md-card flex="30">
+      <md-card flex="130">
         <md-toolbar layout layout-align="center center">
           <h1 class="md-toolbar-tools" layout-align-gt-sm="left">Log In</h1>
         </md-toolbar>
@@ -9,13 +9,13 @@
           <md-input-container class="md-icon-float">
             <label>Username</label>
             <md-icon md-svg-src="../img/ic_person_24px.svg"></md-icon>
-            <input ng-model="username" type="text" ng-required="true">
+            <input ng-model="loginData.username" type="text" ng-required="true">
           </md-input-container>
 
           <md-input-container class="md-icon-float" >
             <label>Password</label>
             <md-icon md-svg-src="../img/ic_lock_24px.svg"></md-icon>
-            <input ng-model="password" type="password" ng-required="true">
+            <input ng-model="loginData.password" type="password" ng-required="true">
           </md-input-container>
           <div layout layout-align="center center">
           <md-button href='#'class="md-raised md-primary center">Log In</md-button>
@@ -24,24 +24,24 @@
       </md-card>
     </md-content>
   </div>
-  <h3 style="text-align: center">New to AndeBooks?</h3>
-  <div layout="column" >
+  <!-- <h3 style="text-align: center">New to AndeBooks?</h3> -->
+  <div layout="column">
     <md-content layout layout-align="center center" class="md-padding">
-      <md-card flex="30">
-        <md-toolbar layout layout-align="center center">
-          <h1 class="md-toolbar-tools" layout-align-gt-sm="left">Sign Up</h1>
+      <md-card flex="130">
+        <md-toolbar layout layout-align="right">
+          <h1 class="md-toolbar-tools" layout-align-gt-sm="left">New User? Sign Up</h1>
         </md-toolbar>
         <md-content class="md-padding">
           <md-input-container class="md-icon-float">
             <label>Username</label>
             <md-icon md-svg-src="../img/ic_person_24px.svg"></md-icon>
-            <input ng-model="username" type="text" ng-required="true">
+            <input ng-model="signupData.username" type="text" ng-required="true">
           </md-input-container>
 
           <md-input-container class="md-icon-float" >
             <label>Password</label>
             <md-icon md-svg-src="../img/ic_lock_24px.svg"></md-icon>
-            <input ng-model="password" type="password" ng-required="true">
+            <input ng-model="signUpData.password" type="password" ng-required="true">
           </md-input-container>
 
           <md-input-container class="md-icon-float" >
@@ -62,4 +62,5 @@
       </md-card>
     </md-content>
   </div>
+  <div><i><q>So many books, so little time</q></i><p>-Frank Zappa</p></div>
 </div>
