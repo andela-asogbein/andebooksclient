@@ -5,7 +5,7 @@
     <!-- <md-icon md-svg-src="../img/ic_search_24px.svg" class="md-padding"></md-icon> -->
     <input ng-model="queryBooks" type="text" ng-required="true">
   </md-input-container>
-  <md-button ng-click="" class="md-raised md-primary center">Get Random Book</md-button>
+  <md-button ng-href="/#/randombook" class="md-raised md-primary center">Get Random Book</md-button>
   <md-button href="/#/addbook" class="md-raised md-primary center">Add Book</md-button>
   </div>
 
@@ -14,14 +14,18 @@
       <md-list>
         <md-list-item class="md-3-line" ng-repeat="book in books | filter:queryBooks">
           <!-- <a href='#/{{book.bookid}}'><img ng-src="{{book.cover}}" class="cover"></a> -->
-          <div class="md-list-item-text">
-            <a href='#/{{book.bookid}}'><h3>{{book.title}}</h3></a>
-            <a href='#'><h4>{{book.author}}</h4></a>
+          <div class="md-list-item-text center">
+            <h2>{{book.title}}</h2>
+            <a ng-href='#/books/{{book.author}}'><h3><b>{{book.author}}</b></h3></a>
+              <br/>
             <div layout="column" style="text-align: justify">{{book.blurb}}</div>
+            <br/>
+            <div>Category: <a ng-href='#/book/{{book.subject}}'>{{book.subject}}</a></div>
+            <br/>
+            <div layout="column">{{book.pages}} Pages</div>
             <div>
-              <md-button ng-click="" class="md-raised md-primary center">Edit Book</md-button>
-          <!--     <md-button ng-click="(deleteBook(book._id)" class="md-raised md-primary center">Remove Book</md-button> -->
-          <md-button ng-click="showConfirm($event, book._id)" class="md-raised md-primary center">Remove Book</md-button>
+              <md-button ng-href="#/book/edit/{{book._id}}" class="md-raised md-primary center">Edit Book</md-button>
+              <md-button ng-click="showConfirm($event, book._id)" class="md-raised md-primary center" id='remove'>Remove Book</md-button>
             </div>
           </div>
           <br/>

@@ -1,5 +1,5 @@
 <div layout="column">
-  <h1>Add Book</h1>
+  <h1>Edit Book</h1>
   <br/>
   <md-content layout-padding class="autoScroll">
     <md-card class="md-padding">
@@ -28,7 +28,7 @@
         <textarea ng-model="bookData.subject" type="text" ng-required="true"></textarea>
       </md-input-container>
 
-      <md-button ng-click="addBook(bookData)" class="md-raised md-primary center">Add Book</md-button>
+      <md-button ng-click="editBook(book._id, bookData)" class="md-raised md-primary center">Save Changes</md-button>
     </md-card>
   </md-content>
 </div>

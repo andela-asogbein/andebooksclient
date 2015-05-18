@@ -6,8 +6,9 @@
   margin-top: 20px;
 }
  a{
-  color: white;
-  text-decoration: none
+  display: inline !important;
+  text-decoration: none;
+  padding: 10px !important;
  }
 
 /*body{
@@ -24,8 +25,10 @@ q{
   font-size: 20px;
 }
 
-p{
-  position: absolute;
-  margin-top: 80px;
-  font-size: 15px;
-  color: green;
+.center{
+  text-align: center;
+  margin: 0 80px;
+}
+button{
+  margin: 10px 5px !important;
+}

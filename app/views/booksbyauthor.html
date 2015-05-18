@@ -1,0 +1,22 @@
+  <div>
+    <md-content>
+      <md-list>
+        <md-list-item class="md-3-line" ng-repeat="book in books | filter:queryBooks">
+          <!-- <a href='#/{{book.bookid}}'><img ng-src="{{book.cover}}" class="cover"></a> -->
+          <div class="md-list-item-text">
+            <h2>{{book.title}}</h2>
+            <a ng-click='booksByAuthor(book.author)' id-'author'><h3><b>{{book.author}}</b></h3></a>
+            <div layout="column" style="text-align: justify">{{book.blurb}}</div>
+            <div ng-click='booksInCategory(book.subject)'>Category: {{book.subject}}</div>
+            <div layout="column">{{book.pages}} Pages</div>
+            <div>
+              <md-button ng-href="#/book/edit/{{book._id}}" class="md-raised md-primary center">Edit Book</md-button>
+              <md-button ng-click="showConfirm($event, book._id)" class="md-raised md-primary center">Remove Book</md-button>
+            </div>
+          </div>
+          <br/>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>

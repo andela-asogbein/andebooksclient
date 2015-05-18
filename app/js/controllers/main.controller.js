@@ -15,23 +15,38 @@ app.config(function($routeProvider, $httpProvider){
       })
       .when('/addbook', {
         templateUrl: 'views/addbook.html',
-        controller: 'andebooksCtrl'
+        controller: 'addBookCtrl'
+      })
+      .when('/book/edit/:bookid', {
+        templateUrl: 'views/editbook.html',
+        controller: 'editBookCtrl'
+      })
+      .when('/books/:author', {
+        templateUrl: 'views/booksbyauthor.html',
+        controller: 'authorBooksCtrl'
+      })
+      .when('/book/:subject', {
+        templateUrl: 'views/booksbycategory.html',
+        controller: 'categoryBooksCtrl'
       })
       .when('/books', {
         templateUrl: 'views/books.html',
-        controller: 'andebooksCtrl'
+        controller: 'booksCtrl'
+      })
+      .when('/randombook', {
+        templateUrl: 'views/randombook.html',
+        controller: 'randomBookCtrl',
+        resolve: {
+          Randombook: function(bookService) {
+            return bookService.getRandomBook().success(function(data) {
+              return data;
+            });
+          }
+        }
       })
       .when('/users', {
         templateUrl: 'views/users.html',
-        controller: 'andebooksCtrl'
-      })
-      .when('/random', {
-        templateUrl: 'views/random.html',
-        controller: 'andebooksCtrl'
-      })
-      .when('/:bookid', {
-        templateUrl: 'views/bookdetail.html',
-        controller: 'andebooksCtrl'
+        controller: 'usersCtrl'
       });
 
   $httpProvider.interceptors.push('AuthInterceptor');
@@ -49,28 +64,20 @@ app.controller('andebooksCtrl', ['$scope', '$location', '$rootScope','$routePara
     });
   });
 
-  bookService.allBooks().success(function(data){
-    $scope.books = data;
-  });
-
-  $scope.allBooks = function(){
-    bookService.allBooks().success(function(data){
-      $scope.books = data;
-      $location.path('/books');
-    });
-  };
-
-  $scope.allUsers = function(){
-    userService.allUsers().success(function(data){
-      $scope.users = data;
-      $location.path('/users');
-    });
-  };
+  // $scope.allUsers = function(){
+  //   userService.allUsers().success(function(data){
+  //     $scope.users = data;
+  //     $location.path('/users');
+  //   });
+  // };
 
   $scope.doLogin = function(){
     Auth.login($scope.loginData.username, $scope.loginData.password)
       .success(function(data){
         $location.path('/books');
+      })
+      .error(function(err){
+        $location.path('/login');
       });
   };
 
@@ -86,39 +93,4 @@ app.controller('andebooksCtrl', ['$scope', '$location', '$rootScope','$routePara
        $location.path('/books');
      });
   };
-
-  $scope.addBook = function(bookData){
-    bookService.addBook(bookData).success(function(data){
-      $location.path('/books');
-    });
-  };
-
-  $scope.deleteBook = function(bookid){
-    bookService.deleteBook(bookid).success(function(data){
-      $location.path('/books');
-    });
-  };
-
-  $scope.editBook = function(bookid){
-    bookService.editBook(bookid).success(function(data){
-
-    });
-  };
-
-  $scope.showConfirm = function(ev, bookid) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    var confirm = $mdDialog.confirm()
-      .title('Do you want to permanently delete this book?')
-      .content('There is no way for you to retrieve it...')
-      .ariaLabel('Lucky day')
-      .ok('Yes')
-      .cancel('No')
-      .targetEvent(ev);
-    $mdDialog.show(confirm).then(function() {
-      $scope.deleteBook(bookid);
-      $scope.allBooks();
-    }, function() {
-    });
-  };
-
 }]);

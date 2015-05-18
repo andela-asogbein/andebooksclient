@@ -5,15 +5,13 @@
     <meta name="viewport" content="initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="css/app.css">
   </head>
-
-  <body layout="column" ng-controller='andebooksCtrl'>
+<!-- ng-controller='andebooksCtrl' -->
+  <body layout="column">
     <md-toolbar layout="row">
-      <h1 class="md-toolbar-tools" layout-align-gt-sm="center"><a href=''>AndeBooks</a></h1>
-        <!-- <md-button href="/#/login" ng-if='!loggedIn'>Log In</md-button> -->
-    <!--     <div ng-if='loggedIn'>Hello {{user.username}}</div> -->
+      <h1 class="md-toolbar-tools" layout-align-gt-sm="left"><a href='#/books'>AndeBooks</a></h1>
         <md-button ng-click='doLogout()' ng-if='loggedIn' flex='15'>Log Out({{user.username}})</md-button>
-        <md-button ng-click='allBooks()'>Books</md-button>
-        <md-button ng-click='allUsers()'>Users</md-button>
+        <md-button ng-click='allBooks()' ng-controller='booksCtrl'>Books</md-button>
+        <md-button ng-click='allUsers()' ng-controller='usersCtrl'>Users</md-button>
     </md-toolbar>
 
     <div ng-view></div>
@@ -25,7 +23,16 @@
     <script src="bower_components/angular-aria/angular-aria.min.js"></script>
     <script src="bower_components/angular-material/angular-material.min.js"></script>
 
-    <script  type="text/javascript" src="js/controllers.js"></script>
+    <script  type="text/javascript" src="js/controllers/main.controller.js"></script>
     <script type="text/javascript" src="/js/services.js"></script>
+    <script type="text/javascript" src="/js/controllers/book/edit.book.ctrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/book/add.book.ctrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/book/books.ctrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/book/random.book.ctrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/book/author.book.ctrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/book/category.book.ctrl.js"></script>
+
+    <script type="text/javascript" src="/js/controllers/user/users.ctrl.js"></script>
+
   </body>
 </html>

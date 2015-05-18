@@ -51,8 +51,8 @@ app.factory('userService', ['$http', function($http){
     return $http.post(baseUrl + '/books', bookData);
   };
 
-  bookFactory.editBook = function(bookid, userData){
-    return $http.put(baseUrl + '/book/'+ bookid, userData);
+  bookFactory.editBook = function(bookid, bookData){
+    return $http.put(baseUrl + '/book/'+ bookid, bookData);
   };
 
   bookFactory.deleteBook = function(bookid){
@@ -63,13 +63,18 @@ app.factory('userService', ['$http', function($http){
 
   };
 
-  bookFactory.searchAuthor = function(){
-
+  bookFactory.searchAuthor = function(authorName){
+    return $http.get(baseUrl + '/books/search/author?author='+authorName);
   };
 
-  bookFactory.randomBook = function(){
-
+  bookFactory.searchCategory =function(categoryName){
+    return $http.get(baseUrl + '/books/search/category?subject='+categoryName);
   };
+
+  bookFactory.getRandomBook = function(){
+      return $http.get(baseUrl + '/books/random');
+  };
+
   return bookFactory;
 
 }]);
