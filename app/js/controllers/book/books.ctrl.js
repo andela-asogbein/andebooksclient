@@ -6,20 +6,14 @@ angular.module('Andebooks').controller('booksCtrl', ['$scope', '$location', '$ro
     $scope.books = data;
   });
 
-  $scope.allBooks = function(){
-    bookService.allBooks().success(function(data){
-      $scope.books = data;
-      $location.path('/books');
-    });
-  };
-
-  $scope.deleteBook = function(bookid){
+  $scope.deleteBook = function(bookid, index){
     bookService.deleteBook(bookid).success(function(data){
-      $location.path('/books');
+      $scope.books.splice(index, 1);
+      // $location.path('/books');
     });
   };
 
-  $scope.showConfirm = function(ev, bookid) {
+  $scope.showConfirm = function(ev, bookid, index) {
     var confirm = $mdDialog.confirm()
       .title('Do you want to permanently delete this book?')
       .content('There is no way for you to retrieve it...')
@@ -28,8 +22,8 @@ angular.module('Andebooks').controller('booksCtrl', ['$scope', '$location', '$ro
       .cancel('No')
       .targetEvent(ev);
     $mdDialog.show(confirm).then(function() {
-      $scope.deleteBook(bookid);
-      $scope.allBooks();
+      $scope.deleteBook(bookid, index);
+      $location.path('/books');
     }, function() {});
   };
 

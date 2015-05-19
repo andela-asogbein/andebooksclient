@@ -5,7 +5,7 @@ var app = angular.module('Andebooks');
   const baseUrl = 'http://localhost:3000/api'; //localhost
 
 //service handlingn requests to the api concerning users
-app.factory('userService', ['$http', function($http){
+app.factory('userService', ['$http','LoginCheckFactory', function($http, LoginCheckFactory){
 
   var userFactory = {};
 
@@ -16,6 +16,10 @@ app.factory('userService', ['$http', function($http){
 
   userFactory.oneUser = function(userid){
     return $http.get(baseUrl + '/user/' + userid);
+  };
+
+  userFactory.getByUsername = function(username){
+    return $http.get(baseUrl + '/user/username/' + username);
   };
 
   userFactory.addUser = function(userData){
@@ -35,7 +39,7 @@ app.factory('userService', ['$http', function($http){
 }]);
 
 //service handling requests to the api concerning books
-  app.factory('bookService', ['$http', function($http){
+  app.factory('bookService', ['$http','LoginCheckFactory', function($http, LoginCheckFactory){
 
   var bookFactory = {};
 
@@ -47,7 +51,8 @@ app.factory('userService', ['$http', function($http){
     return $http.get(baseUrl + '/book/' + bookid);
   };
 
-  bookFactory.addBook = function(bookData){
+  bookFactory.addBook = function(bookData,id){
+    bookData.addedBy = id;
     return $http.post(baseUrl + '/books', bookData);
   };
 
@@ -160,4 +165,28 @@ app.factory('userService', ['$http', function($http){
       return $q.reject(response);
     };
     return interceptorFactory;
+  }]);
+
+  app.service('LoginCheckFactory', ['$rootScope', 'Auth', function($rootScope, Auth){
+    $rootScope.loggedIn = Auth.isLoggedIn();
+
+    $rootScope.$on('$viewContentLoaded', function(){
+      $rootScope.loggedIn = Auth.isLoggedIn();
+      Auth.getUser().success(function(data){
+        $rootScope.user = data;
+      });
+    });
+  }]);
+
+//there+was+a+country+inauthor:achebe+chinua&key=AIzaSyBE2t8zrwz_oNdAm0-Ev4oIJfMOS8K0l8Q
+  app.factory('googleBookFactory', ['$http', function($http){
+
+    var googleBookFactory = {};
+
+    googleBookFactory.bookInformation = function(){
+      return $http.get('https://www.googleapis.com/books/v1/volumes?q='+ '/users');
+    };
+
+    return googleBookFactory;
+
   }]);

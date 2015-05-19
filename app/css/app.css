@@ -25,9 +25,9 @@ q{
   font-size: 20px;
 }
 
-.center{
-  text-align: center;
-  margin: 0 80px;
+.books{
+  text-align: center !important;
+  margin: 0 250px;
 }
 button{
   margin: 10px 5px !important;

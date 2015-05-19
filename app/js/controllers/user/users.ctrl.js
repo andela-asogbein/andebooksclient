@@ -4,16 +4,8 @@ angular.module('Andebooks').controller('usersCtrl', ['$scope', '$location', '$ro
 
   userService.allUsers().success(function(data){
     $scope.users = data;
-    $location.path('/users');
+    //$location.path('/users');
   });
 
-  $scope.allUsers = function(){
-    userService.allUsers().success(function(data){
-      console.log(data)
-      $scope.users = data;
-    $location.path('/users');
-
-    });
-  };
 
 }]);
