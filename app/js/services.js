@@ -5,7 +5,7 @@ var app = angular.module('Andebooks');
   const baseUrl = 'http://localhost:3000/api'; //localhost
 
 //service handlingn requests to the api concerning users
-app.factory('userService', ['$http','LoginCheckFactory', function($http, LoginCheckFactory){
+app.factory('userService', ['$http', function($http){
 
   var userFactory = {};
 
@@ -39,7 +39,7 @@ app.factory('userService', ['$http','LoginCheckFactory', function($http, LoginCh
 }]);
 
 //service handling requests to the api concerning books
-  app.factory('bookService', ['$http','LoginCheckFactory', function($http, LoginCheckFactory){
+  app.factory('bookService', ['$http', function($http){
 
   var bookFactory = {};
 
@@ -51,7 +51,7 @@ app.factory('userService', ['$http','LoginCheckFactory', function($http, LoginCh
     return $http.get(baseUrl + '/book/' + bookid);
   };
 
-  bookFactory.addBook = function(bookData,id){
+  bookFactory.addBook = function(bookData,id, image){
     bookData.addedBy = id;
     return $http.post(baseUrl + '/books', bookData);
   };
@@ -167,24 +167,13 @@ app.factory('userService', ['$http','LoginCheckFactory', function($http, LoginCh
     return interceptorFactory;
   }]);
 
-  app.service('LoginCheckFactory', ['$rootScope', 'Auth', function($rootScope, Auth){
-    $rootScope.loggedIn = Auth.isLoggedIn();
-
-    $rootScope.$on('$viewContentLoaded', function(){
-      $rootScope.loggedIn = Auth.isLoggedIn();
-      Auth.getUser().success(function(data){
-        $rootScope.user = data;
-      });
-    });
-  }]);
-
-//there+was+a+country+inauthor:achebe+chinua&key=AIzaSyBE2t8zrwz_oNdAm0-Ev4oIJfMOS8K0l8Q
+//there+was+a+country+inauthor:achebe+chinua
   app.factory('googleBookFactory', ['$http', function($http){
 
     var googleBookFactory = {};
 
-    googleBookFactory.bookInformation = function(){
-      return $http.get('https://www.googleapis.com/books/v1/volumes?q='+ '/users');
+    googleBookFactory.bookInformation = function(authorTitle){
+      return $http.get('https://www.googleapis.com/books/v1/volumes?q='+ authorTitle + '&key=AIzaSyBE2t8zrwz_oNdAm0-Ev4oIJfMOS8K0l8Q');
     };
 
     return googleBookFactory;
