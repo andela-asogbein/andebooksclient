@@ -1,8 +1,8 @@
 'use strict';
 var app = angular.module('Andebooks');
 
- //const baseUrl = 'https://andebooks.herokuapp.com/api'; //heroku
-  const baseUrl = 'http://localhost:3000/api'; //localhost
+ const baseUrl = 'https://andebooks.herokuapp.com/api'; //heroku
+  //const baseUrl = 'http://localhost:3000/api'; //localhost
 
 //service handlingn requests to the api concerning users
 app.factory('userService', ['$http', function($http){

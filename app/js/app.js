@@ -47,18 +47,29 @@ angular.module('Andebooks', ['ngMaterial','ngRoute'])
         .when('/users', {
           templateUrl: 'app/views/users.html',
           controller: 'usersCtrl'
-        });
+        }).otherwise('/');
 
     $httpProvider.interceptors.push('AuthInterceptor');
   });
 
-angular.module('Andebooks').run(['$rootScope', 'Auth', function($rootScope, Auth) {
+angular.module('Andebooks').run(['$rootScope', '$location', 'Auth', function($rootScope, $location, Auth) {
 
   $rootScope.loggedIn = Auth.isLoggedIn();
-  $rootScope.$on('$routeChangeStart', function(){
+  $rootScope.$on('$routeChangeStart', function(event, next, current){
     $rootScope.loggedIn = Auth.isLoggedIn();
     Auth.getUser().success(function(data){
-      $rootScope.user = data;
+          $rootScope.user = data;
+        });
+      // if($rootScope.loggedIn === true){
+      //   Auth.getUser().success(function(data){
+      //     $rootScope.user = data;
+      //   });
+      // }else{
+      //   if (next && next.$$route && (next.$$route.originalPath === "/books")){
+      //     $location.path('/books');
+      //   }
+      //   $location.path('/login');
+      // }
+
     });
-  });
 }]);
