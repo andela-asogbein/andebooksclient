@@ -51,3 +51,14 @@ angular.module('Andebooks', ['ngMaterial','ngRoute'])
 
     $httpProvider.interceptors.push('AuthInterceptor');
   });
+
+angular.module('Andebooks').run(['$rootScope', 'Auth', function($rootScope, Auth) {
+
+  $rootScope.loggedIn = Auth.isLoggedIn();
+  $rootScope.$on('$routeChangeStart', function(){
+    $rootScope.loggedIn = Auth.isLoggedIn();
+    Auth.getUser().success(function(data){
+      $rootScope.user = data;
+    });
+  });
+}]);
