@@ -6,35 +6,35 @@ angular.module('Andebooks', ['ngMaterial','ngRoute'])
   .config(function($routeProvider, $httpProvider){
     $routeProvider
         .when('/', {
-          templateUrl: 'views/books.html',
+          templateUrl: 'app/views/books.html',
           controller: 'booksCtrl'
         })
         .when('/login', {
-          templateUrl: 'views/login.html',
+          templateUrl: 'app/views/login.html',
           controller: 'mainCtrl'
         })
         .when('/addbook', {
-          templateUrl: 'views/addbook.html',
+          templateUrl: 'app/views/addbook.html',
           controller: 'addBookCtrl'
         })
         .when('/book/edit/:bookid', {
-          templateUrl: 'views/editbook.html',
+          templateUrl: 'app/views/editbook.html',
           controller: 'editBookCtrl'
         })
         .when('/books/:author', {
-          templateUrl: 'views/booksbyauthor.html',
+          templateUrl: 'app/views/booksbyauthor.html',
           controller: 'authorBooksCtrl'
         })
         .when('/book/:subject', {
-          templateUrl: 'views/booksbycategory.html',
+          templateUrl: 'app/views/booksbycategory.html',
           controller: 'categoryBooksCtrl'
         })
         .when('/books', {
-          templateUrl: 'views/books.html',
+          templateUrl: 'app/views/books.html',
           controller: 'booksCtrl'
         })
         .when('/randombook', {
-          templateUrl: 'views/randombook.html',
+          templateUrl: 'app/views/randombook.html',
           controller: 'randomBookCtrl',
           resolve: {
             Randombook: function(bookService) {
@@ -45,7 +45,7 @@ angular.module('Andebooks', ['ngMaterial','ngRoute'])
           }
         })
         .when('/users', {
-          templateUrl: 'views/users.html',
+          templateUrl: 'app/views/users.html',
           controller: 'usersCtrl'
         });
 
