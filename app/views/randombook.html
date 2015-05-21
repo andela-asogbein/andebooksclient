@@ -3,7 +3,7 @@
     <a ng-click='booksByAuthor(book.author)' id-'author'><h4>{{randomBook.author}}</h4></a>
     <div layout="column" style="text-align: justify">{{randomBook.blurb}}</div>
       <div>
-        <md-button ng-click="" class="md-raised md-primary center">Edit Book</md-button>
+        <md-button ng-href="#/book/edit/{{book._id}}" class="md-raised md-primary center" ng-disabled="user.username !== book.addedBy.username">Edit Book</md-button>
         <md-button ng-click="showConfirm($event, book._id)" class="md-raised md-primary center">Remove Book</md-button>
       </div>
 </div>
