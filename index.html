@@ -9,10 +9,10 @@
   <body layout="column">
     <md-toolbar layout="row">
       <h1 class="md-toolbar-tools" layout-align-gt-sm="left"><a href='#/books'>AndeBooks</a></h1>
-        <md-button ng-href='/#/login' ng-if='!loggedIn' flex='15'>Log In</md-button>
+        <md-button ng-href='#/login' ng-if='!loggedIn' flex='15'>Log In</md-button>
         <md-button  ng-controller='mainCtrl' ng-click='doLogout()' ng-if='loggedIn' flex='15'>Log Out {{user.username}}</md-button>
-        <md-button ng-href='/#/books'>Books</md-button>
-        <md-button ng-href='/#/users'>Users</md-button>
+        <md-button ng-href='#/books'>Books</md-button>
+        <md-button ng-href='#/users'>Users</md-button>
     </md-toolbar>
 
     <div ng-view></div>
