@@ -10,8 +10,8 @@
             <div ng-click='booksInCategory(book.subject)'>Category: {{book.subject}}</div>
             <div layout="column">{{book.pages}} Pages</div>
             <div>
-              <md-button ng-href="#/book/edit/{{book._id}}" class="md-raised md-primary center" ng-disabled="user.username !== book.addedBy.username">Edit Book</md-button>
-              <md-button ng-click="showConfirm($event, book._id, $index)" class="md-raised md-primary center" id='remove' ng-disabled="user.username !== book.addedBy.username">Remove Book</md-button>
+              <md-button ng-href="#/book/edit/{{book._id}}" class="md-raised md-primary center">Edit Book</md-button>
+              <md-button ng-click="showConfirm($event, book._id)" class="md-raised md-primary center">Remove Book</md-button>
             </div>
           </div>
           <br/>
