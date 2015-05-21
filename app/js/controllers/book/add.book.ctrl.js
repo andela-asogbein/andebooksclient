@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Andebooks').controller('addBookCtrl', ['$scope', '$location', 'bookService', 'userService',function($scope, $location, $routeParams,bookService, userService){
+angular.module('Andebooks').controller('addBookCtrl', ['$scope', '$location', '$routeParams', 'bookService', 'userService',function($scope, $location, $routeParams,bookService, userService){
 
   $scope.addBook = function(bookData,user){
 
