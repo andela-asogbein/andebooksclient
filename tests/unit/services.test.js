@@ -5,9 +5,12 @@ describe('Testing services', function(){
 
   beforeEach(module('Andebooks'));
 
-  inject(function(userService){
-    _userService = userService;
+  beforeEach(function(){
+    inject(function(userService){
+      _userService = userService;
+    });
   });
+
 
   it('userService service should be defined', function(){
     expect(_userService).toBeDefined();
